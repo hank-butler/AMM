@@ -12,4 +12,6 @@ contract AMM {
         token1 = _token1;
         token2 = _token2;
     }
+
+    function addLiquidity()
 }
