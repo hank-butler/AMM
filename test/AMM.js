@@ -64,7 +64,7 @@ describe('AMM', () => {
             transaction = await token1.connect(deployer).approve(amm.address, amount)
             await transaction.wait()
 
-            transaction = await token2.connect(deployer).apporve(amm.address, amount)
+            transaction = await token2.connect(deployer).approve(amm.address, amount)
             await transaction.wait()
 
             // Deployer add liquidity
