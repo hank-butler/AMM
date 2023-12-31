@@ -1,10 +1,13 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.0;
 
+// importing necessary files, Token is local
 import "hardhat/console.sol";
 import "./Token.sol";
 
+// setting up AMM contract.
 contract AMM {
+    // state variables.
     Token public token1;
     Token public token2;
 
