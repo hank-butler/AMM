@@ -140,6 +140,19 @@ describe('AMM', () => {
             transaction = await amm.connect(investor1).swapToken1(tokens(1))
             result = await transaction.wait()
 
+            // Check swap event
+            await expect(transaction).to.emit(amm, 'Swap')
+                .withArgs(
+                    investor1.address,
+                    token1.address,
+                    tokens(1),
+                    token2.address,
+                    estimate,
+                    await amm.token1Balance(),
+                    await amm.token2Balance(),
+                    (await ethers.provider.getBlock(await ethers.provider.getBlockNumber())).timestamp
+                )
+
             // Check Investor1 Balance After swap
             balance = await token2.balanceOf(investor1.address)
             console.log(`Investor1 token2 balance after swap: ${ethers.utils.formatEther(balance)}`)
