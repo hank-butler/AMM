@@ -145,6 +145,10 @@ describe('AMM', () => {
             console.log(`Investor1 token2 balance after swap: ${ethers.utils.formatEther(balance)}`)
 
             expect(estimate).to.equal(balance)
+
+            // AMM token balances in sync
+            expect(await token1.balanceOf(amm.address)).to.equal(await amm.token1Balance())
+            expect(await token2.balanceOf(amm.address)).to.equal(await amm.token2Balance())
         })
     })
 })
