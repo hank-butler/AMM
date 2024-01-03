@@ -126,6 +126,42 @@ contract AMM {
 
     }
 
+    function calculateToken2Swap(uint256 _token2Amount)
+        public
+        view
+        returns (uint256 token1Amount) {
+            uint256 token2After = token2Balance + _token2Amount;
+            uint256 token1After = K / token2After;
+            token1Amount = token1Balance - token1After;
+
+            if (token1Amount == token1Balance){
+                token1Amount --;
+            }
+
+            require(token1Amount < token1Balance, "swap amount too large");
+        }
+
+    function swapToken2(uint256 _token2Amount) external returns (uint256 token1Amount){
+        token1Amount = calculateToken2Swap(_token2Amount);
+
+        token2.transferFrom(msg.sender, address(this), _token2Amount);
+        token2Balance += _token2Amount;
+        token1Balance -= token1Amount;
+        token1.transfer(msg.sender, token1Amount);
+
+        emit Swap(
+            msg.sender,
+            address(token2),
+            _token2Amount,
+            address(token1),
+            token1Amount,
+            token1Balance,
+            token2Balance,
+            block.timestamp
+        );
+
+    }
+
 
 
 }
