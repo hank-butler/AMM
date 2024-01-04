@@ -162,6 +162,14 @@ contract AMM {
 
     }
 
+    function removeLiquidity(uint256 _share) 
+        external 
+        returns 
+        (uint256 token1Amount, uint256 token2Amount) 
+        {
+            
+        }
+
 
 
 }
