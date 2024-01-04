@@ -7,17 +7,35 @@
 const hre = require("hardhat");
 
 async function main() {
-  const NAME = 'Dapp University'
-  const SYMBOL = 'DAPP'
-  const MAX_SUPPLY = '1000000'
-
   // Deploy Token
   const Token = await hre.ethers.getContractFactory('Token')
-  let token = await Token.deploy(NAME, SYMBOL, MAX_SUPPLY)
 
-  await token.deployed()
-  console.log(`Token deployed to: ${token.address}\n`)
+  // Deploy Dapp Token (token 1)
+  let dapp = await Token.deploy('Dapp Token', 'DAPP', '1000000') // 1mm tokens
+  await dapp.deploy()
+  console.log(`Dapp Token deployed to: ${dapp.address}\n`)
+
+  // Deploy Token 2
+  const usd = await Token.deploy('USD Token', 'USD', '1000000') // 1mm tokens
+  await usd.deploy()
+  console.log(`USD Token deployed to: ${usd.address}\n`)
+
+  // Deploy AMM
+  const AMM = await hre.ethers.getContractFactory('AMM')
+  const amm = await AMM.deploy(dapp.address, usd.address)
+
+  console.log(`AMM contract deployed to: ${amm.address}\n`)
+
 }
+// Open a new tab in terminal, run a new local blockchain
+// ~6' into video
+// RUN IN TERMINAL: npx hardhat node
+// Go to other tab in terminal and run
+// npx hardhat run scripts/deploy.js --network localhost
+// should see address for contracts deployed
+// Save them to config file.
+
+
 
 // We recommend this pattern to be able to use async/await everywhere
 // and properly handle errors.
