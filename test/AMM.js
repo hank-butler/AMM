@@ -267,7 +267,29 @@ describe('AMM', () => {
             console.log(`AMM Token1 Balance: ${ethers.utils.formatEther(await amm.token1Balance())}\n`)
             console.log(`AMM Token2 Balance: ${ethers.utils.formatEther(await amm.token2Balance())}\n`)
 
-            
+            // Check LP balance before removing tokens
+            balance = await token1.balanceOf(liquidityProvider.address)
+            console.log(`LP token 1 balance before removing funds: ${ethers.utils.formatEther(balance)}\n`)
+
+            balance = await token2.balanceOf(liquidityProvider.address)
+            console.log(`LP token 2 balance before removing funds: ${ethers.utils.formatEther(balance)}\n`)
+
+            // LP removes tokens
+            transaction = await amm.connect(liquidityProvider).removeLiquidity(tokens(50))
+            await transaction.wait()
+
+            balance = await token1.balanceOf(liquidityProvider.address)
+            console.log(`LP token 1 balance after withdrawal: ${ethers.utils.formatEther(balance)}\n`)
+
+            balance = await token2.balanceOf(liquidityProvider.address)
+            console.log(`LP token 2 balance after withdrawal: ${ethers.utils.formatEther(balance)}\n`)
+
+            // LP should have 0 shares
+            expect(await amm.shares(liquidityProvider.address)).to.equal(0)
+            // deployer should have 11
+            expect(await amm.shares(deployer.address)).to.equal(tokens(100))
+            // AMM pool has 100 total shares
+            expect(await amm.totalShares()).to.equal(tokens(100))
         })
     })
 })
