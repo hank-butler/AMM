@@ -256,6 +256,18 @@ describe('AMM', () => {
             expect(await token2.balanceOf(amm.address)).to.equal(await amm.token2Balance())
 
             console.log(`Price: ${await amm.token2Balance() / await amm.token1Balance()}\n`)
+
+            // ================================ //
+            //         Removing Liquidity       //
+            // ================================ //
+            console.log('=='.repeat(20))
+            console.log('   Removing Liquidity  ')
+            console.log('=='.repeat(20))
+
+            console.log(`AMM Token1 Balance: ${ethers.utils.formatEther(await amm.token1Balance())}\n`)
+            console.log(`AMM Token2 Balance: ${ethers.utils.formatEther(await amm.token2Balance())}\n`)
+
+            
         })
     })
 })
