@@ -9,7 +9,7 @@ import "./Token.sol";
 
 // setting up AMM contract.
 contract AMM {
-    // state variables.
+    // state variables from Token.sol;
     Token public token1;
     Token public token2;
 
@@ -21,6 +21,7 @@ contract AMM {
     mapping(address => uint256) public shares;
     uint256 constant PRECISION = 10**18;
 
+    // Emitting an event is putting data on chain
     event Swap(
         address user,
         address tokenGive,
@@ -31,7 +32,7 @@ contract AMM {
         uint256 token2Balance,
         uint256 timestamp
     );
-
+    // for constructor, think like __init__ in Python classes
     constructor(Token _token1, Token _token2){
         token1 = _token1;
         token2 = _token2;
