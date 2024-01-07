@@ -33,6 +33,7 @@ contract AMM {
         uint256 timestamp
     );
     // for constructor, think like __init__ in Python classes
+    
     constructor(Token _token1, Token _token2){
         token1 = _token1;
         token2 = _token2;
