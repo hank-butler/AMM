@@ -22,16 +22,7 @@ contract AMM {
     uint256 constant PRECISION = 10**18;
 
     // Emitting an event is putting data on chain
-    event Swap(
-        address user,
-        address tokenGive,
-        uint256 tokenGiveAmount,
-        address tokenGet,
-        uint256 tokenGetAmount,
-        uint256 token1Balance,
-        uint256 token2Balance,
-        uint256 timestamp
-    );
+    
     // for constructor, think like __init__ in Python classes
     
     constructor(Token _token1, Token _token2){
