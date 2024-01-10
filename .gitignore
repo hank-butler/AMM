@@ -2,3 +2,8 @@
 node_modules
 artifacts
 cache
+*.json
+*.json
+*.json
+src/config.json
+src/config.json
