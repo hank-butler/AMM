@@ -12,12 +12,12 @@ async function main() {
 
   // Deploy Dapp Token (token 1)
   let dapp = await Token.deploy('Dapp Token', 'DAPP', '1000000') // 1mm tokens
-  await dapp.deploy()
+  await dapp.deployed()
   console.log(`Dapp Token deployed to: ${dapp.address}\n`)
 
   // Deploy Token 2
   const usd = await Token.deploy('USD Token', 'USD', '1000000') // 1mm tokens
-  await usd.deploy()
+  await usd.deployed()
   console.log(`USD Token deployed to: ${usd.address}\n`)
 
   // Deploy AMM
