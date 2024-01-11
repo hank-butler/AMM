@@ -7,3 +7,5 @@ cache
 *.json
 src/config.json
 src/config.json
+*.json
+src/config.json
