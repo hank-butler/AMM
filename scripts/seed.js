@@ -21,7 +21,21 @@ async function main() {
     const investor3 = accounts[3]
     const investor4 = accounts[4]
 
-    
+    // Fetch network
+    const { chainId } = await ethers.provider.getNetwork()
+
+    console.log('Transferring tokens to account \n')
+
+    // Fetch Dapp Token
+    const dapp = await ethers.getContractAt('Token', config[chainId].dapp.address)
+    console.log(`Dapp fetched: ${dapp.address}\n`)
+
+    // Fetch USD Token
+    const usd = await ethers.getContractAt('Token', config[chainId].usd.address)
+    console.log(`USD fetched: ${usd.address}\n`)
+
+    // check with npx hardhat run scripts/seed.js --network localhost (make sure you have local node running in terminal)
+
 
 }
 
