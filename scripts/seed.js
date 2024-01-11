@@ -1,3 +1,9 @@
+// open two tabs in terminal
+// npx hardhat node -> runs local hardhat network
+// npx hardhat run scripts/deploy.js --network localhost
+// deploys contract on local network
+// npx hardhat run scripts/seed.js --network localhost
+
 const { ethers } = require("hardhat");
 const hre = require("hardhat");
 const config = require("../src/config.json")
