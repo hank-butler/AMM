@@ -30,13 +30,15 @@ async function main() {
     // Fetch network
     const { chainId } = await ethers.provider.getNetwork()
 
+    console.log('='.repeat(20))
     console.log('Transferring tokens to account \n')
+    console.log('='.repeat(20))
 
     // Fetch Dapp Token
     const dapp = await ethers.getContractAt('Token', config[chainId].dapp.address)
     console.log(`Dapp fetched: ${dapp.address}\n`)
 
-    // Fetch USD Token
+    // Fetch USD Token, .getContractAt() for fetching deployed contracts
     const usd = await ethers.getContractAt('Token', config[chainId].usd.address)
     console.log(`USD fetched: ${usd.address}\n`)
 
