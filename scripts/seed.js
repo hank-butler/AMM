@@ -3,6 +3,7 @@
 // npx hardhat run scripts/deploy.js --network localhost
 // deploys contract on local network
 // npx hardhat run scripts/seed.js --network localhost
+// reset hardhat accounts on metamask after restarting local network
 
 const { ethers } = require("hardhat");
 const hre = require("hardhat");
